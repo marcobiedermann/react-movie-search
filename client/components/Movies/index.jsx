@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Movie from './Movie';
+import Movie from '../Movie';
 
 const Movies = props => (
   <ul className="movies">

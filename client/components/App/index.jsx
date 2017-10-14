@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Movies from './Movies';
+import Movies from '../Movies';
 
 const movies = [
   {
