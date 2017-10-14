@@ -1,0 +1,11 @@
+body {
+  background-color: #1e2931;
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  font-style: 1rem;
+  line-height: 1.5;
+  margin: 0 auto;
+  padding-bottom: 5vmin;
+  padding-top: 5vmin;
+  width: 95%;
+}

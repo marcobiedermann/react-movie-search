@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Movies from '../Movies';
 import Search from '../Search';
+import './app.css';
 
 const API_KEY = 'cfe422613b250f702980a3bbf9e90716';
 

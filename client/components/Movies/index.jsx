@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Movie from '../Movie';
+import './movies.css';
 
 const Movies = props => (
   <ul className="movies">

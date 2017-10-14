@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './search.css';
+
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,7 @@ class Search extends Component {
 
   render() {
     return (
-      <form>
+      <form className="search">
         <input
           onChange={event => this.onChange(event)}
           placeholder="Search for movie title …"
