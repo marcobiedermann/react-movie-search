@@ -6,6 +6,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'docs'),
     hot: true,
   },
+  devtool: 'source-map',
   entry: {
     main: path.resolve(__dirname, 'client/index'),
   },
