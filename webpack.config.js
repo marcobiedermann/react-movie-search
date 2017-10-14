@@ -15,11 +15,19 @@ module.exports = {
     filename: 'assets/js/[name].js',
   },
   module: {
-    loaders: [
+    rules: [
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: [
+        use: [
           'babel-loader',
         ],
       },
@@ -30,6 +38,7 @@ module.exports = {
   ],
   resolve: {
     extensions: [
+      '.css',
       '.js',
       '.jsx',
     ],
