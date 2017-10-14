@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Movies from '../Movies';
+import Search from '../Search';
 
 const movies = [
   {
@@ -11,6 +12,7 @@ const movies = [
 
 const App = () => (
   <div className="app">
+    <Search />
     <Movies movies={movies} />
   </div>
 );
