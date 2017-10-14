@@ -1,6 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
+  devServer: {
+    contentBase: path.resolve(__dirname, 'docs'),
+    hot: true,
+  },
   entry: {
     main: path.resolve(__dirname, 'client/index'),
   },
@@ -19,6 +24,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
   resolve: {
     extensions: [
       '.js',
