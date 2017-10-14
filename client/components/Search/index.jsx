@@ -1,38 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import './search.css';
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
+const Search = props => (
+  <form className="search" onInput={event => props.onInput(event)}>
+    <input
+      placeholder="Search for movie title …"
+      type="search"
+      value={props.query}
+    />
+  </form>
+);
 
-    this.state = {
-      query: '',
-    };
-  }
-
-  onChange(event) {
-    this.updateQuery(event.target.value);
-  }
-
-  updateQuery(query) {
-    this.setState({
-      query,
-    });
-  }
-
-  render() {
-    return (
-      <form className="search">
-        <input
-          onChange={event => this.onChange(event)}
-          placeholder="Search for movie title …"
-          type="search"
-          value={this.state.query}
-        />
-      </form>
-    );
-  }
-}
+Search.propTypes = {
+  onInput: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
+};
 
 export default Search;

@@ -19,11 +19,25 @@ function getPopularMovies() {
   });
 }
 
+function getMovies(query) {
+  return new Promise((resolve, reject) => {
+    const url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then((data) => {
+        resolve(data.results);
+      })
+      .catch(error => reject(error));
+  });
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       movies: [],
+      query: '',
     };
   }
 
@@ -35,11 +49,29 @@ class App extends Component {
     });
   }
 
+  onInput(event) {
+    const query = event.target.value;
+
+    this.setState({
+      query,
+    });
+
+    getMovies(query).then((movies) => {
+      this.setState({
+        movies,
+      });
+    });
+  }
+
   render() {
+    const { movies, query } = this.state;
+    const isSearched = searchQuery => item => !searchQuery ||
+      item.title.toLowerCase().includes(searchQuery.toLowerCase());
+
     return (
       <div className="app">
-        <Search />
-        <Movies movies={this.state.movies} />
+        <Search query={query} onInput={event => this.onInput(event)} />
+        <Movies movies={movies.filter(isSearched(query))} />
       </div>
     );
   }
