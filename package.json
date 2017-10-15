@@ -10,9 +10,17 @@
     "start": "npm run client:prod",
     "test": "npm run lint:js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcobiedermann/react-movie-search.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcobiedermann/react-movie-search/issues"
+  },
+  "homepage": "https://github.com/marcobiedermann/react-movie-search#readme",
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
