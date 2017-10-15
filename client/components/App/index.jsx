@@ -57,9 +57,9 @@ class App extends Component {
     });
 
     getMovies(query).then((movies) => {
-      this.setState({
-        movies,
-      });
+      this.setState(prevState => ({
+        movies: movies || prevState.movies,
+      }));
     });
   }
 
