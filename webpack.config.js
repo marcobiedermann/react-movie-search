@@ -13,7 +13,7 @@ module.exports = {
     main: path.resolve(__dirname, 'client/assets/js/index'),
   },
   output: {
-    path: path.resolve(__dirname, 'docs'),
+    path: path.resolve(__dirname, 'server/public'),
     filename: 'assets/js/[name].js',
   },
   module: {
