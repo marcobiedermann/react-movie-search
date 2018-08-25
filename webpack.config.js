@@ -1,15 +1,16 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
   devServer: {
-    contentBase: path.resolve(__dirname, 'docs'),
+    contentBase: 'client',
     hot: true,
   },
   devtool: 'source-map',
   entry: {
-    main: path.resolve(__dirname, 'client/index'),
+    main: path.resolve(__dirname, 'client/assets/js/index'),
   },
   output: {
     path: path.resolve(__dirname, 'docs'),
@@ -38,6 +39,9 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('assets/css/styles.css'),
+    new HtmlWebpackPlugin({
+      template: 'client/index.html',
+    }),
     new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
