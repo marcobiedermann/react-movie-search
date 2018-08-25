@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -p",
     "develop": "webpack-dev-server",
-    "lint:js": "eslint --ext .js,.jsx client",
+    "lint:js": "eslint './**/*.{js,jsx}'",
     "test": "npm run lint:js"
   },
   "repository": {
