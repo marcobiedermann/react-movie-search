@@ -4,10 +4,9 @@
   "description": "",
   "main": "client/index.jsx",
   "scripts": {
-    "client:dev": "webpack-dev-server",
-    "client:prod": "webpack -p",
+    "build": "webpack -p",
+    "develop": "webpack-dev-server",
     "lint:js": "eslint --ext .js,.jsx client",
-    "start": "npm run client:prod",
     "test": "npm run lint:js"
   },
   "repository": {
