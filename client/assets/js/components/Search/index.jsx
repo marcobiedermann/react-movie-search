@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import './search.css';
 
-const Search = props => (
-  <form className="search" onInput={event => props.onInput(event)}>
+const Search = ({ query, onInput }) => (
+  <form className="search" onInput={event => onInput(event)}>
     <input
       placeholder="Search for movie title …"
       type="search"
-      value={props.query}
+      value={query}
     />
   </form>
 );

@@ -65,8 +65,8 @@ class App extends Component {
 
   render() {
     const { movies, query } = this.state;
-    const isSearched = searchQuery => item => !searchQuery ||
-      item.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const isSearched = searchQuery => item => !searchQuery
+      || item.title.toLowerCase().includes(searchQuery.toLowerCase());
 
     return (
       <div className="app">
