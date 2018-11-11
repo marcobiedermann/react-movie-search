@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
-import middleware from './middleware';
-import reducer from './reducers';
+import middleware from '../middleware';
+import reducer from '../reducers';
 
 const store = createStore(reducer, middleware);
 
