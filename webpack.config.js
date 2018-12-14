@@ -1,6 +1,16 @@
+const dotenv = require('dotenv');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
+
+const env = dotenv.config().parsed;
+
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+
+  return prev;
+}, {});
 
 module.exports = {
   devServer: {
@@ -44,6 +54,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'client/index.html',
     }),
+    new webpack.DefinePlugin(envKeys),
   ],
   resolve: {
     extensions: [

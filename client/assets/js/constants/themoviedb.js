@@ -1,2 +1,2 @@
-export const API_BASE = 'https://api.themoviedb.org/3';
-export const API_KEY = 'cfe422613b250f702980a3bbf9e90716';
+export const API_BASE = process.env.THE_MOVIE_DB_API_BASE;
+export const API_KEY = process.env.THE_MOVIE_DB_API_KEY;
