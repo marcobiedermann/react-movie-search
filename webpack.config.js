@@ -6,11 +6,9 @@ const webpack = require('webpack');
 
 const env = dotenv.config().parsed;
 
-const envKeys = Object.keys(env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next]);
-
-  return prev;
-}, {});
+const envKeys = obj => Object.keys(obj).reduce((accumulator, key) => (
+  { ...accumulator, [`process.env.${key}`]: JSON.stringify(obj[key]) }
+), {});
 
 module.exports = {
   devServer: {
@@ -54,7 +52,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'client/index.html',
     }),
-    new webpack.DefinePlugin(envKeys),
+    new webpack.DefinePlugin(envKeys(env)),
   ],
   resolve: {
     extensions: [
