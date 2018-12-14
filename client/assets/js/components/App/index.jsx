@@ -4,30 +4,30 @@ import Movies from '../Movies';
 import Search from '../Search';
 import './app.css';
 
-function getPopularMovies() {
-  return new Promise((resolve, reject) => {
+async function getPopularMovies() {
+  try {
     const url = `${API_BASE}/movie/popular?api_key=${API_KEY}`;
 
-    fetch(url)
-      .then(response => response.json())
-      .then((data) => {
-        resolve(data.results);
-      })
-      .catch(error => reject(error));
-  });
+    const response = await fetch(url);
+    const result = await response.json();
+
+    return result.results;
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
-function getMovies(query) {
-  return new Promise((resolve, reject) => {
+async function getMovies(query) {
+  try {
     const url = `${API_BASE}/search/movie?query=${query}&api_key=${API_KEY}`;
 
-    fetch(url)
-      .then(response => response.json())
-      .then((data) => {
-        resolve(data.results);
-      })
-      .catch(error => reject(error));
-  });
+    const response = await fetch(url);
+    const result = await response.json();
+
+    return result.results;
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 class App extends Component {
@@ -39,26 +39,34 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    getPopularMovies().then((movies) => {
+  async componentDidMount() {
+    try {
+      const movies = await getPopularMovies();
+
       this.setState({
         movies,
       });
-    });
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
-  onInput(event) {
+  async onInput(event) {
     const query = event.target.value;
 
     this.setState({
       query,
     });
 
-    getMovies(query).then((movies) => {
+    try {
+      const movies = await getMovies(query);
+
       this.setState(prevState => ({
         movies: movies || prevState.movies,
       }));
-    });
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   render() {
