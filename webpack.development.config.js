@@ -6,6 +6,7 @@ const baseConfig = require('./webpack.config');
 module.exports = merge(baseConfig, {
   devServer: {
     contentBase: 'client',
+    historyApiFallback: true,
   },
   devtool: 'cheap-module-source-map',
   mode: 'development',
