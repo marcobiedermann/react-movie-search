@@ -1,3 +1,8 @@
+export const ACTORS = {
+  name: 'Actors',
+  path: '/actors',
+};
+
 export const INDEX = {
   name: 'Home',
   path: '/',
