@@ -6,8 +6,13 @@
   "scripts": {
     "build": "webpack --config webpack.production.config.js",
     "develop": "webpack-dev-server --config webpack.development.config.js",
-    "lint:js": "eslint './**/*.{js,jsx}'",
-    "test": "npm run lint:js"
+    "fix:js": "npm run lint:js -- --fix",
+    "fix": "npm run fix:js",
+    "format": "prettier --write '**/*.{css,html,js,jsx,json,md,yml,yaml}'",
+    "lint:js": "eslint '**/*.{js,jsx}'",
+    "lint": "npm run lint:js",
+    "start": "gatsby serve",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -39,11 +44,14 @@
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
     "html-webpack-plugin": "^4.0.0-beta.5",
     "mini-css-extract-plugin": "^0.7.0",
+    "prettier": "^1.18.2",
     "style-loader": "^0.23.1",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5",
