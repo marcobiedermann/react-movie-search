@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Movie from '../Movie';
 import './movies.css';
 
-const Movies = (props) => {
+const Movies = props => {
   const { movies } = props;
 
   return (
@@ -16,7 +16,7 @@ const Movies = (props) => {
       ))}
     </ul>
   );
-}
+};
 
 Movies.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,

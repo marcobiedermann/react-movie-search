@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 import './movie.css';
 
-const Movie = (props) => {
+const Movie = props => {
   const { id, poster_path, title } = props;
 
   return (
@@ -17,9 +17,7 @@ const Movie = (props) => {
       </figure>
       <div className="movie__body">
         <h2 className="movie__title">
-          <Link to={`${routes.MOVIES.path}/${id}`}>
-            {title}
-          </Link>
+          <Link to={`${routes.MOVIES.path}/${id}`}>{title}</Link>
         </h2>
       </div>
     </div>

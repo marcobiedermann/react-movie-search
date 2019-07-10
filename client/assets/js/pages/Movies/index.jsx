@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import MoviePage from '../Movie';
 
-const MoviesPage = (props) => {
+const MoviesPage = props => {
   const { match } = props;
 
   return (
