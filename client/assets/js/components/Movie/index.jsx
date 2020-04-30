@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 import './movie.css';
 
-const Movie = props => {
+const Movie = (props) => {
   const { id, poster_path, title } = props;
 
   return (

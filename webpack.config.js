@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 const env = dotenv.config().parsed;
 
-const envKeys = obj =>
+const envKeys = (obj) =>
   Object.keys(obj).reduce(
     (accumulator, key) => ({ ...accumulator, [`process.env.${key}`]: JSON.stringify(obj[key]) }),
     {},

@@ -61,7 +61,7 @@ class App extends Component {
     try {
       const movies = await getMovies(query);
 
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         movies: movies || prevState.movies,
       }));
     } catch (error) {
@@ -71,12 +71,12 @@ class App extends Component {
 
   render() {
     const { movies, query } = this.state;
-    const isSearched = searchQuery => item =>
+    const isSearched = (searchQuery) => (item) =>
       !searchQuery || item.title.toLowerCase().includes(searchQuery.toLowerCase());
 
     return (
       <div className="app">
-        <Search query={query} onInput={event => this.onInput(event)} />
+        <Search query={query} onInput={(event) => this.onInput(event)} />
         <Movies movies={movies.filter(isSearched(query))} />
       </div>
     );
