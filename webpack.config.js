@@ -1,14 +1,5 @@
-const dotenv = require('dotenv');
+const Dotenv = require('dotenv-webpack');
 const path = require('path');
-const webpack = require('webpack');
-
-const env = dotenv.config().parsed;
-
-const envKeys = (obj) =>
-  Object.keys(obj).reduce(
-    (accumulator, key) => ({ ...accumulator, [`process.env.${key}`]: JSON.stringify(obj[key]) }),
-    {},
-  );
 
 module.exports = {
   entry: {
@@ -31,7 +22,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [new webpack.DefinePlugin(envKeys(env))],
+  plugins: [new Dotenv()],
   resolve: {
     extensions: ['.js', '.jsx'],
   },
