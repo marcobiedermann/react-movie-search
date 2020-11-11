@@ -1,11 +1,16 @@
 /* eslint-disable camelcase */
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 import './movie.css';
 
-const Movie = (props) => {
+export interface MovieProps {
+  id: string;
+  poster_path: string;
+  title: string;
+}
+
+const Movie: FC<MovieProps> = (props) => {
   const { id, poster_path, title } = props;
 
   return (
@@ -22,16 +27,6 @@ const Movie = (props) => {
       </div>
     </div>
   );
-};
-
-Movie.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  poster_path: PropTypes.string,
-};
-
-Movie.defaultProps = {
-  poster_path: '',
 };
 
 export default Movie;

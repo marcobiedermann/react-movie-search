@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 import ActorsPage from '../../pages/Actors';
@@ -6,7 +6,7 @@ import GenresPage from '../../pages/Genres';
 import IndexPage from '../../pages/Index';
 import MoviesPage from '../../pages/Movies';
 
-const Router = () => (
+const Router: FC = () => (
   <BrowserRouter>
     <Switch>
       <Route path={routes.ACTORS.path} component={ActorsPage} />

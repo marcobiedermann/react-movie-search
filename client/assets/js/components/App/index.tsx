@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { ChangeEvent, Component } from 'react';
 import { API_BASE, API_KEY } from '../../constants/themoviedb';
 import Movies from '../Movies';
 import Search from '../Search';
@@ -17,7 +17,7 @@ async function getPopularMovies() {
   }
 }
 
-async function getMovies(query) {
+async function getMovies(query: string) {
   try {
     const url = `${API_BASE}/search/movie?query=${query}&api_key=${API_KEY}`;
 
@@ -30,48 +30,50 @@ async function getMovies(query) {
   }
 }
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movies: [],
-      query: '',
-    };
-  }
+interface Movie {
+  id: string;
+  poster_path: string;
+  title: string;
+}
+
+export interface AppProps {}
+
+export interface AppState {
+  movies: Movie[];
+  query: string;
+}
+
+class App extends Component<AppProps, AppState> {
+  state: AppState = {
+    movies: [],
+    query: '',
+  };
 
   async componentDidMount() {
-    try {
-      const movies = await getPopularMovies();
+    const movies = await getPopularMovies();
 
-      this.setState({
-        movies,
-      });
-    } catch (error) {
-      throw new Error(error);
-    }
+    this.setState({
+      movies,
+    });
   }
 
-  async onInput(event) {
+  async onInput(event: ChangeEvent<HTMLInputElement>) {
     const query = event.target.value;
 
     this.setState({
       query,
     });
 
-    try {
-      const movies = await getMovies(query);
+    const movies = await getMovies(query);
 
-      this.setState((prevState) => ({
-        movies: movies || prevState.movies,
-      }));
-    } catch (error) {
-      throw new Error(error);
-    }
+    this.setState((prevState) => ({
+      movies: movies || prevState.movies,
+    }));
   }
 
   render() {
     const { movies, query } = this.state;
-    const isSearched = (searchQuery) => (item) =>
+    const isSearched = (searchQuery: string) => (item: Movie) =>
       !searchQuery || item.title.toLowerCase().includes(searchQuery.toLowerCase());
 
     return (

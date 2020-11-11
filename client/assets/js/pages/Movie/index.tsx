@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-const MoviePage = () => (
+const MoviePage: FC = () => (
   <div>
     <h1>Movie</h1>
   </div>

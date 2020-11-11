@@ -1,10 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
-import Movie from '../Movie';
+import React, { FC } from 'react';
+import Movie, { MovieProps } from '../Movie';
 import './movies.css';
 
-const Movies = (props) => {
+export interface MoviesProps {
+  movies: MovieProps[];
+}
+
+const Movies: FC<MoviesProps> = (props) => {
   const { movies } = props;
 
   return (
@@ -16,10 +18,6 @@ const Movies = (props) => {
       ))}
     </ul>
   );
-};
-
-Movies.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Movies;

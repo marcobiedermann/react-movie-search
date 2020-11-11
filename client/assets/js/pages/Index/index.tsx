@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import App from '../../components/App';
 
-const IndexPage = () => (
+const IndexPage: FC = () => (
   <div>
     <App />
   </div>
