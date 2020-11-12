@@ -1,88 +1,53 @@
-import React, { ChangeEvent, Component } from 'react';
-import { API_BASE, API_KEY } from '../../constants/themoviedb';
+import React, { ChangeEvent, FC, useState } from 'react';
+import useSWR from 'swr';
 import Movies from '../Movies';
 import Search from '../Search';
 import './app.css';
 
-async function getPopularMovies() {
-  try {
-    const url = `${API_BASE}/movie/popular?api_key=${API_KEY}`;
-
-    const response = await fetch(url);
-    const result = await response.json();
-
-    return result.results;
-  } catch (error) {
-    throw new Error(error);
-  }
-}
-
-async function getMovies(query: string) {
-  try {
-    const url = `${API_BASE}/search/movie?query=${query}&api_key=${API_KEY}`;
-
-    const response = await fetch(url);
-    const result = await response.json();
-
-    return result.results;
-  } catch (error) {
-    throw new Error(error);
-  }
-}
-
-interface Movie {
-  id: string;
-  poster_path: string;
+interface Result {
+  adult: boolean;
+  backdrop_path: string | null;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  release_date: string;
   title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 }
 
-export interface AppProps {}
-
-export interface AppState {
-  movies: Movie[];
-  query: string;
+interface AppData {
+  page: number;
+  results: Result[];
+  total_pages: number;
+  total_results: number;
 }
 
-class App extends Component<AppProps, AppState> {
-  state: AppState = {
-    movies: [],
-    query: '',
-  };
+const App: FC = () => {
+  const [query, setQuery] = useState('');
+  const { data, error } = useSWR<AppData>(query ? `/search/movie?query=${query}` : '/movie/popular');
 
-  async componentDidMount() {
-    const movies = await getPopularMovies();
-
-    this.setState({
-      movies,
-    });
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
-  async onInput(event: ChangeEvent<HTMLInputElement>) {
+  const onInput = (event: ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
 
-    this.setState({
-      query,
-    });
+    setQuery(query);
+  };
 
-    const movies = await getMovies(query);
-
-    this.setState((prevState) => ({
-      movies: movies || prevState.movies,
-    }));
-  }
-
-  render() {
-    const { movies, query } = this.state;
-    const isSearched = (searchQuery: string) => (item: Movie) =>
-      !searchQuery || item.title.toLowerCase().includes(searchQuery.toLowerCase());
-
-    return (
-      <div className="app">
-        <Search query={query} onInput={(event) => this.onInput(event)} />
-        <Movies movies={movies.filter(isSearched(query))} />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="app">
+      <Search query={query} onInput={onInput} />
+      {data ? <Movies movies={data.results} /> : <div>Loading …</div>}
+    </div>
+  );
+};
 
 export default App;
