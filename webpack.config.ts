@@ -1,12 +1,13 @@
-const Dotenv = require('dotenv-webpack');
-const path = require('path');
+import Dotenv from 'dotenv-webpack';
+import { resolve } from 'path';
+import { Configuration } from 'webpack';
 
-module.exports = {
+const config: Configuration = {
   entry: {
-    main: path.resolve(__dirname, 'client/assets/js/index'),
+    main: resolve(__dirname, 'client/assets/js/index'),
   },
   output: {
-    path: path.resolve(__dirname, 'server/public'),
+    path: resolve(__dirname, 'server/public'),
     filename: 'assets/js/[name].js',
   },
   module: {
@@ -27,3 +28,5 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 };
+
+export default config;
