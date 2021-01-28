@@ -2,7 +2,7 @@
   "name": "react-movie-search",
   "version": "1.0.0",
   "description": "",
-  "main": "client/index.jsx",
+  "main": "src/assets/js/index.jsx",
   "scripts": {
     "build": "webpack --config webpack.production.config.ts",
     "check": "tsc --noEmit",

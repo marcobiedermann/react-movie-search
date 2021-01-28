@@ -2,7 +2,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { Configuration } from 'webpack';
 import { merge } from 'webpack-merge';
-import baseConfig from './webpack.config';
+import baseConfig, { paths } from './webpack.config';
 
 const config: Configuration = {
   devtool: 'source-map',
@@ -45,8 +45,6 @@ const config: Configuration = {
         preserveLineBreaks: false,
         preventAttributesEscaping: false,
         processConditionalComments: false,
-        processScripts: false,
-        quoteCharacter: false,
         removeAttributeQuotes: true,
         removeComments: true,
         removeEmptyAttributes: true,
@@ -61,7 +59,7 @@ const config: Configuration = {
         trimCustomFragments: true,
         useShortDoctype: true,
       },
-      template: 'client/index.html',
+      template: `${paths.src}/index.html`,
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/css/styles.css',
