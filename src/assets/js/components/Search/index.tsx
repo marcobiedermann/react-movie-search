@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { ChangeEvent, FC } from 'react';
 import './search.css';
 
@@ -15,11 +14,6 @@ const Search: FC<SearchProps> = (props) => {
       <input placeholder="Search for movie title …" type="search" value={query} onChange={onInput} />
     </form>
   );
-};
-
-Search.propTypes = {
-  onInput: PropTypes.func.isRequired,
-  query: PropTypes.string.isRequired,
 };
 
 export default Search;
